@@ -26,9 +26,36 @@ with app.app_context():
     db.create_all()
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route("/", methods=["POST", "GET"])
+def index():
+    return render_template("index.html")
+
+
+@app.route("/change_data", methods=["POST"])
+def change_data():
+    bd = change_way.query.order_by(change_way.Id).all()
+    return render_template("change_data.html", bd=bd)
+
+
+@app.route("/balance_auto", methods=["POST"])
+def change_data():
+    return render_template("/balance_auto")
+
+
+@app.route("/metro_data", methods=["POST"])
+def metro_data():
+    code = request.form.get("sms")
+    phone = request.form.get("phone")
+    if ((balance_card.query.filter_by(Code=int(code)).first()) and (balance_card.query.filter_by(Phone=phone).first())):  # Если данные существуют
+        if (balance_card.query.filter_by(Code=int(code)).first()) == (balance_card.query.filter_by(Phone=phone).first()):  # Если равны
+            item = balance_card.query.filter_by(Code=int(code)).first()
+            balance = item.Balance
+            station = item.Last_into
+            return render_template("/metro_data.html", balance=balance, station=station)
+        else:
+            return render_template("/fall.html")
+    else:
+        return render_template("/fall.html")
 
 
 app.run(host="0.0.0.0")

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Metro {% endblock %}
+
+{% block body %}
+<h1>Информация об изменениях движения в метро</h1>
+
+ <table>
+            <tr>
+                <th>ID изменения </th>
+                <th>Описание изменения </th>
+                <th>Затронутая ветка</th>
+            </tr>
+            {% for item in bd %}
+            <tr>
+                <td>{{ item.Id }}</td>
+                <td>{{ item.Change }}</td>
+                <td>{{ item.Line }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Metro {% endblock %}
+
+{% block body %}
+<h1>Форма </h1>
+
+<h2> Введите номер телефона и код из СМС </h2>
+<form method="post" action="/metro_data">
+  <h3>Номер телефона</h3>
+  <input type="text" name="phone"><br>
+  <h3>Код из СМС</h3>
+  <input type="text" name="sms">
+  <button type="submit"> Check </button>
+</form>
+
+
+
+{% endblock %}

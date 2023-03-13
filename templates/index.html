@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} Metro {% endblock %}
+
+{% block body %}
+<h1>Главная страница</h1>
+
+<h2> Выберети услугу </h2>
+<form method="post" action="/change_data">
+    <label>Получение информации об изменениях движения в метро</label>
+  <button type="submit"> Показать </button>
+</form>
+
+<form method="post" action="/balance_auto">
+    <label>Получение информации о балансе проездного </label>
+  <button type="submit"> Показать </button>
+</form>
+
+{% endblock %}
